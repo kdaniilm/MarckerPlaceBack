@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(
+        connectionString, 
+        sqlOptions => sqlOptions.MigrationsAssembly("MarckerPlaceBack")
+        ));
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -16,6 +19,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
