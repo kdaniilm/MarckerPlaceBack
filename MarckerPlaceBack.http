@@ -1,0 +1,6 @@
+@MarckerPlaceBack_HostAddress = http://localhost:5290
+
+GET {{MarckerPlaceBack_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
