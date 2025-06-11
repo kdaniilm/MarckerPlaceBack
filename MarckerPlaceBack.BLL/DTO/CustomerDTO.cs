@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarckerPlaceBack.BLL.DTO
 {
-    public class ClientsDTO
+    public class CustomerDTO
     {
         public required long Id { get; set; }
         public required string FullName { get; set; }

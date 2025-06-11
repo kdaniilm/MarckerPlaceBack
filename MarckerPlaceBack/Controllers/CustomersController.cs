@@ -18,14 +18,14 @@ namespace MarckerPlaceBack.Controllers
 
         [HttpGet]
         [Route("birthday")]
-        public async Task<IEnumerable<ClientsDTO>> GetBirthdayCustomersAsync(DateTime birthDate)
+        public async Task<IEnumerable<CustomerDTO>> GetBirthdayCustomersAsync(DateTime birthDate)
         {
             return await _customerService.GetBirthdayCustomerAsync(birthDate);
         }
 
         [HttpGet]
         [Route("last")]
-        public async Task<IEnumerable<ClientsDTO>> GetLastCustomerAsync(int daysCount)
+        public async Task<IEnumerable<CustomerDTO>> GetLastCustomerAsync(int daysCount)
         {
             return await _customerService.GetLastCustomerAsync(daysCount);
         }
