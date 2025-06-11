@@ -11,9 +11,9 @@ namespace MarckerPlaceBack.Core.Models
     {
         [Key]
         public long CustomerId {  get; set; }
-        public string Name { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName {  get; set; }
-        public DateTime RegistationDate { get; set; }
+        public required string Name { get; set; }
+        public string? MiddleName { get; set; }
+        public required string LastName {  get; set; }
+        public DateTime BirthDay { get; set; }
     }
 }

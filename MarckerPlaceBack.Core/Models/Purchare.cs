@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,8 +13,12 @@ namespace MarckerPlaceBack.Core.Models
         [Key]
         public long PurchareId { get; set; }
         public DateTime PurchareDate { get; set; }
-        public string TotalPrice { get; set; }
+        [Precision(18, 2)]
+        public required decimal TotalPrice { get; set; }
 
-        public List<Product> Products { get; set; }
+        public required long CustomerId {  get; set; }
+
+        public virtual Customer Customer { get; set; }
+        public List<PurchareToProduct> PurchareToProducts { get; set; }
     }
 }

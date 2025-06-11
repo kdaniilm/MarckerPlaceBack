@@ -4,6 +4,7 @@ using MarckerPlaceBack.Core.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarckerPlaceBack.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250611060757_AddReferenceFromPurcharesToCustomers")]
+    partial class AddReferenceFromPurcharesToCustomers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,46 +211,25 @@ namespace MarckerPlaceBack.Migrations
                         {
                             PurchareId = 1L,
                             CustomerId = 1L,
-                            PurchareDate = new DateTime(2025, 6, 4, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            PurchareDate = new DateTime(2025, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalPrice = 2.80m
                         },
                         new
                         {
                             PurchareId = 2L,
                             CustomerId = 2L,
-                            PurchareDate = new DateTime(2025, 6, 6, 11, 25, 0, 0, DateTimeKind.Unspecified),
+                            PurchareDate = new DateTime(2025, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalPrice = 12.50m
-                        },
-                        new
-                        {
-                            PurchareId = 3L,
-                            CustomerId = 2L,
-                            PurchareDate = new DateTime(2025, 6, 6, 12, 10, 0, 0, DateTimeKind.Unspecified),
-                            TotalPrice = 18.2m
-                        },
-                        new
-                        {
-                            PurchareId = 4L,
-                            CustomerId = 3L,
-                            PurchareDate = new DateTime(2025, 6, 7, 14, 0, 0, 0, DateTimeKind.Unspecified),
-                            TotalPrice = 14m
-                        },
-                        new
-                        {
-                            PurchareId = 5L,
-                            CustomerId = 1L,
-                            PurchareDate = new DateTime(2025, 6, 8, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            TotalPrice = 2.99m
                         });
                 });
 
-            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchareToProduct", b =>
+            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchaseToProduct", b =>
                 {
-                    b.Property<long>("PurchareToProductId")
+                    b.Property<long>("PurchaseToProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PurchareToProductId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PurchaseToProductId"));
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
@@ -258,71 +240,16 @@ namespace MarckerPlaceBack.Migrations
                     b.Property<long>("PurchareId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("PurchareToProductId");
+                    b.Property<long>("PurchaseId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("PurchaseToProductId");
 
                     b.HasIndex("ProductId");
 
                     b.HasIndex("PurchareId");
 
-                    b.ToTable("PurcharesToProducts");
-
-                    b.HasData(
-                        new
-                        {
-                            PurchareToProductId = 1L,
-                            ProductId = 1L,
-                            ProductsCount = 2,
-                            PurchareId = 1L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 2L,
-                            ProductId = 2L,
-                            ProductsCount = 1,
-                            PurchareId = 1L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 3L,
-                            ProductId = 5L,
-                            ProductsCount = 1,
-                            PurchareId = 2L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 4L,
-                            ProductId = 4L,
-                            ProductsCount = 2,
-                            PurchareId = 3L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 5L,
-                            ProductId = 2L,
-                            ProductsCount = 10,
-                            PurchareId = 3L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 6L,
-                            ProductId = 1L,
-                            ProductsCount = 10,
-                            PurchareId = 4L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 7L,
-                            ProductId = 2L,
-                            ProductsCount = 5,
-                            PurchareId = 4L
-                        },
-                        new
-                        {
-                            PurchareToProductId = 8L,
-                            ProductId = 3L,
-                            ProductsCount = 1,
-                            PurchareId = 5L
-                        });
+                    b.ToTable("PurchasesToProducts");
                 });
 
             modelBuilder.Entity("MarckerPlaceBack.Core.Models.Product", b =>
@@ -347,7 +274,7 @@ namespace MarckerPlaceBack.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchareToProduct", b =>
+            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchaseToProduct", b =>
                 {
                     b.HasOne("MarckerPlaceBack.Core.Models.Product", "Product")
                         .WithMany()
