@@ -25,9 +25,9 @@ namespace MarckerPlaceBack.Controllers
 
         [HttpGet]
         [Route("last")]
-        public async Task<IEnumerable<CustomerDTO>> GetLastCustomerAsync(int daysCount)
+        public async Task<IEnumerable<CurtomerLastBuyDTO>> GetLastCustomerBuyAsync(int daysCount)
         {
-            return await _customerService.GetLastCustomerAsync(daysCount);
+            return await _customerService.GetLastCustomerBuyAsync(daysCount);
         }
 
         [HttpGet]

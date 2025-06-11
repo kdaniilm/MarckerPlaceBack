@@ -5,7 +5,7 @@ namespace MarckerPlaceBack.BLL.Services.Interfaces
     public interface ICustomerService
     {
         Task<IEnumerable<CustomerDTO>> GetBirthdayCustomerAsync(DateTime birthDay);
-        Task<IEnumerable<CustomerDTO>> GetLastCustomerAsync(int daysCount);
+        Task<IEnumerable<CurtomerLastBuyDTO>> GetLastCustomerBuyAsync(int daysCount);
         Task<IEnumerable<CategoriesDTO>> GetCustomerCategoriesAsync(long customerId);
     }
 }

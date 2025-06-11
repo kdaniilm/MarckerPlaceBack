@@ -36,9 +36,19 @@ namespace MarckerPlaceBack.BLL.Services.Implementations
             }
         }
 
-        public async Task<IEnumerable<CustomerDTO>> GetLastCustomerAsync(int daysCount)
+        public async Task<IEnumerable<CurtomerLastBuyDTO>> GetLastCustomerBuyAsync(int daysCount)
         {
-            throw new NotImplementedException();
+            var fromDate = DateTime.Now.AddDays(-daysCount);
+            var purcharesFromDate = _dbContext.Purchares.Include(p => p.Customer).Where(p => p.PurchareDate >= fromDate);
+
+            var result = purcharesFromDate.Any() ?
+                (await purcharesFromDate.Select(p => new CurtomerLastBuyDTO() { Id = p.Customer.CustomerId, FullName = ConfigureFullname(p.Customer), LastBuyDate = p.PurchareDate })
+                    .OrderByDescending(clb => clb.LastBuyDate).ToListAsync())
+                : new List<CurtomerLastBuyDTO>();
+
+            result = result.DistinctBy(r => r.Id).ToList();
+
+            return result;
         }
 
         public async Task<IEnumerable<CategoriesDTO>> GetCustomerCategoriesAsync(long customerId)
