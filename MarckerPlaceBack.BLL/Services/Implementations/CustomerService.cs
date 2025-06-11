@@ -51,11 +51,6 @@ namespace MarckerPlaceBack.BLL.Services.Implementations
             return result;
         }
 
-        public async Task<IEnumerable<CategoriesDTO>> GetCustomerCategoriesAsync(long customerId)
-        {
-            throw new NotImplementedException();
-        }
-
         private static string ConfigureFullname(Customer customer)
         {
             var fullname = $"{customer.Name}";

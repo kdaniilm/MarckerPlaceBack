@@ -6,6 +6,5 @@ namespace MarckerPlaceBack.BLL.Services.Interfaces
     {
         Task<IEnumerable<CustomerDTO>> GetBirthdayCustomerAsync(DateTime birthDay);
         Task<IEnumerable<CurtomerLastBuyDTO>> GetLastCustomerBuyAsync(int daysCount);
-        Task<IEnumerable<CategoriesDTO>> GetCustomerCategoriesAsync(long customerId);
     }
 }

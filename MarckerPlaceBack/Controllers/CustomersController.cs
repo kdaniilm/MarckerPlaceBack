@@ -29,12 +29,5 @@ namespace MarckerPlaceBack.Controllers
         {
             return await _customerService.GetLastCustomerBuyAsync(daysCount);
         }
-
-        [HttpGet]
-        [Route("categories")]
-        public async Task<IEnumerable<CategoriesDTO>> GetCustomerCategoriesAsync(long customerId)
-        {
-            return await _customerService.GetCustomerCategoriesAsync(customerId);
-        }
     }
 }
