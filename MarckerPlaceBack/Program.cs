@@ -1,3 +1,5 @@
+using MarckerPlaceBack.BLL.Services.Implementations;
+using MarckerPlaceBack.BLL.Services.Interfaces;
 using MarckerPlaceBack.Core.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -21,6 +23,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
