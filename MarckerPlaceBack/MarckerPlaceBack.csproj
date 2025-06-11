@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MarckerPlaceBack.Core\MarckerPlaceBack.Core.csproj" />
+    <ProjectReference Include="..\MarckerPlaceBack.BLL\MarckerPlaceBack.BLL.csproj" />
   </ItemGroup>
 
 </Project>
