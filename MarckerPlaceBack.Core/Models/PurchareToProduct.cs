@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MarckerPlaceBack.Core.Models
 {
-    public class PurchaseToProduct
+    public class PurchareToProduct
     {
-        public long PurchaseToProductId { get; set; }
+        [Key]
+        public long PurchareToProductId { get; set; }
         public long ProductId { get; set; }
-        public long PurchaseId { get; set; }
+        public long PurchareId { get; set; }
         public int ProductsCount { get; set; }
 
         public virtual Product Product { get; set; }

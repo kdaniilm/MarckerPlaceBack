@@ -4,6 +4,7 @@ using MarckerPlaceBack.Core.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarckerPlaceBack.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250611062337_FixNamingAndFillPurchaseToProduct")]
+    partial class FixNamingAndFillPurchaseToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,13 +244,13 @@ namespace MarckerPlaceBack.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchareToProduct", b =>
+            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchaseToProduct", b =>
                 {
-                    b.Property<long>("PurchareToProductId")
+                    b.Property<long>("PurchaseToProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PurchareToProductId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PurchaseToProductId"));
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
@@ -258,67 +261,67 @@ namespace MarckerPlaceBack.Migrations
                     b.Property<long>("PurchareId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("PurchareToProductId");
+                    b.HasKey("PurchaseToProductId");
 
                     b.HasIndex("ProductId");
 
                     b.HasIndex("PurchareId");
 
-                    b.ToTable("PurcharesToProducts");
+                    b.ToTable("PurchasesToProducts");
 
                     b.HasData(
                         new
                         {
-                            PurchareToProductId = 1L,
+                            PurchaseToProductId = 1L,
                             ProductId = 1L,
                             ProductsCount = 2,
                             PurchareId = 1L
                         },
                         new
                         {
-                            PurchareToProductId = 2L,
+                            PurchaseToProductId = 2L,
                             ProductId = 2L,
                             ProductsCount = 1,
                             PurchareId = 1L
                         },
                         new
                         {
-                            PurchareToProductId = 3L,
+                            PurchaseToProductId = 3L,
                             ProductId = 5L,
                             ProductsCount = 1,
                             PurchareId = 2L
                         },
                         new
                         {
-                            PurchareToProductId = 4L,
+                            PurchaseToProductId = 4L,
                             ProductId = 4L,
                             ProductsCount = 2,
                             PurchareId = 3L
                         },
                         new
                         {
-                            PurchareToProductId = 5L,
+                            PurchaseToProductId = 5L,
                             ProductId = 2L,
                             ProductsCount = 10,
                             PurchareId = 3L
                         },
                         new
                         {
-                            PurchareToProductId = 6L,
+                            PurchaseToProductId = 6L,
                             ProductId = 1L,
                             ProductsCount = 10,
                             PurchareId = 4L
                         },
                         new
                         {
-                            PurchareToProductId = 7L,
+                            PurchaseToProductId = 7L,
                             ProductId = 2L,
                             ProductsCount = 5,
                             PurchareId = 4L
                         },
                         new
                         {
-                            PurchareToProductId = 8L,
+                            PurchaseToProductId = 8L,
                             ProductId = 3L,
                             ProductsCount = 1,
                             PurchareId = 5L
@@ -347,7 +350,7 @@ namespace MarckerPlaceBack.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchareToProduct", b =>
+            modelBuilder.Entity("MarckerPlaceBack.Core.Models.PurchaseToProduct", b =>
                 {
                     b.HasOne("MarckerPlaceBack.Core.Models.Product", "Product")
                         .WithMany()

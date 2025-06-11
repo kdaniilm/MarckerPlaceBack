@@ -1,18 +1,22 @@
 using MarckerPlaceBack.Core.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
     options.UseSqlServer(
-        connectionString, 
+        connectionString,
         sqlOptions => sqlOptions.MigrationsAssembly("MarckerPlaceBack")
-        ));
+        );
+    options.ConfigureWarnings(x => x.Ignore(RelationalEventId.PendingModelChangesWarning));
+ });
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -22,12 +26,11 @@ var app = builder.Build();
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI(); // You can configure options here if needed
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

@@ -12,9 +12,9 @@ namespace MarckerPlaceBack.Core.Models
     {
         [Key]
         public long ProductId { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public int CategoryId { get; set; }
-        public string Articul { get; set; }
+        public required string Articul { get; set; }
 
         [Precision(18, 2)]
         public decimal Price { get; set; }
